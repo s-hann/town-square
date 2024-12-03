@@ -34,6 +34,7 @@ class _AppView extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(
               fontFamily: FontFamily.sFProDisplay,
             ),
+        scaffoldBackgroundColor: const Color(0xFFF8F9FA),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),

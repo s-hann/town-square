@@ -6,3 +6,12 @@ class ActivitiesEvent extends Equatable {
 }
 
 class GetAllActivitiesData extends ActivitiesEvent {}
+
+class FilterCategory extends ActivitiesEvent {
+  FilterCategory({required this.index});
+
+  final int index;
+
+  @override
+  List<Object> get props => [index];
+}

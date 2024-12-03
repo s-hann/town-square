@@ -9,7 +9,7 @@ class ActivityApi {
   Future<List<ActivityModel>> getAllActivities() async {
     // To get a realistic feel when the user loads the data from the server, I put this Future.delayed function
     await Future.delayed(
-      const Duration(milliseconds: 200),
+      const Duration(milliseconds: 2000),
     );
     return _dummy();
   }
@@ -24,6 +24,16 @@ class ActivityApi {
         availableSpot: 8,
         price: 9,
         time: DateTime.now().copyWith(hour: 8, minute: 0),
+        durationInMinute: 60,
+      ),
+      ActivityModel(
+        name: 'Standing Tapas Lunch',
+        location: 'Casa Marina',
+        intensity: null,
+        category: 'food',
+        availableSpot: 8,
+        price: 15,
+        time: DateTime.now().copyWith(hour: 13, minute: 15),
         durationInMinute: 60,
       ),
       ActivityModel(
@@ -43,28 +53,8 @@ class ActivityApi {
         category: 'sports',
         availableSpot: 0,
         price: 19,
-        time: DateTime.now().copyWith(hour: 12, minute: 30),
+        time: DateTime.now().copyWith(hour: 14, minute: 30),
         durationInMinute: 45,
-      ),
-      ActivityModel(
-        name: 'Basketball Game',
-        location: 'Municipal Sports Center',
-        intensity: 'high',
-        category: 'sports',
-        availableSpot: 4,
-        price: 8,
-        time: DateTime.now().copyWith(hour: 13, minute: 15),
-        durationInMinute: 60,
-      ),
-      ActivityModel(
-        name: 'Standing Tapas Lunch',
-        location: 'Casa Marina',
-        intensity: null,
-        category: 'food',
-        availableSpot: 8,
-        price: 15,
-        time: DateTime.now().copyWith(hour: 13, minute: 15),
-        durationInMinute: 60,
       ),
       ActivityModel(
         name: 'Lego Building Workshop',
@@ -75,6 +65,16 @@ class ActivityApi {
         price: 15,
         time: DateTime.now().copyWith(hour: 15, minute: 0),
         durationInMinute: 90,
+      ),
+      ActivityModel(
+        name: 'Basketball Game',
+        location: 'Municipal Sports Center',
+        intensity: 'high',
+        category: 'sports',
+        availableSpot: 4,
+        price: 8,
+        time: DateTime.now().copyWith(hour: 13, minute: 15),
+        durationInMinute: 60,
       ),
     ];
   }

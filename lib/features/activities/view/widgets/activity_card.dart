@@ -73,12 +73,14 @@ class ActivityCard extends StatelessWidget {
                       Assets.icons.icMapPin,
                     ),
                     const SizedBox(width: 8),
-                    Text(
-                      _activity.location,
-                      style: const TextStyle(
-                        color: Color(0xFFADB5BD),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                    Expanded(
+                      child: Text(
+                        _activity.location,
+                        style: const TextStyle(
+                          color: Color(0xFFADB5BD),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                     ),
                   ],
@@ -162,20 +164,31 @@ class ActivityCard extends StatelessWidget {
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                '${_activity.price.toInt()}€',
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  height: 16.7 / 14,
+              Padding(
+                padding: const EdgeInsets.only(right: 16),
+                child: Text(
+                  '${_activity.price.toInt()}€',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    height: 16.7 / 14,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Join'),
-              ),
+              if (_activity.availableSpot < 1) ...[
+                const ElevatedButton(
+                  onPressed: null,
+                  child: Text('Sold out'),
+                ),
+              ] else ...[
+                ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('Join'),
+                ),
+              ],
             ],
           ),
         ],

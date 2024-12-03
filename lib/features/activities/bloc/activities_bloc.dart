@@ -13,6 +13,7 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
       : _activityRepository = activityRepository,
         super(const ActivitiesState()) {
     on<GetAllActivitiesData>(_getAllActivitiesData);
+    on<FilterCategory>(_filterCategory);
     add(GetAllActivitiesData());
   }
 
@@ -25,14 +26,36 @@ class ActivitiesBloc extends Bloc<ActivitiesEvent, ActivitiesState> {
     emit(state.copyWith(status: FetchStatus.loading));
     try {
       final activities = await _activityRepository.getAllActivities();
+      activities.sort(
+        (a, b) => a.time.compareTo(b.time),
+      );
       emit(
         state.copyWith(
           status: FetchStatus.success,
-          activities: activities,
+          activitiesCache: activities,
+          visibleActivities: activities,
         ),
       );
     } catch (_) {
       emit(state.copyWith(status: FetchStatus.failure));
     }
+  }
+
+  void _filterCategory(
+    FilterCategory event,
+    Emitter<ActivitiesState> emit,
+  ) {
+    final filtered = event.index == 0
+        ? state.activitiesCache
+        : state.activitiesCache.where(
+            (item) =>
+                item.category == state.categories[event.index].toLowerCase(),
+          );
+    emit(
+      state.copyWith(
+        activeCategoryIndex: event.index,
+        visibleActivities: filtered.toList(),
+      ),
+    );
   }
 }
