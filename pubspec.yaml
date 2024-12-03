@@ -1,0 +1,43 @@
+name: town_square
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  activity_repository:
+    path: packages/activity_repository
+  equatable: ^2.0.7
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.6
+  flutter_svg: ^2.0.16
+  go_router: ^14.6.1
+  intl: ^0.20.1
+  percent_indicator: ^4.2.4
+  url_strategy: ^0.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.13
+  flutter_gen_runner: ^5.8.0
+
+flutter_gen:
+  output: lib/core/gen/
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icons/
+  fonts:
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFProDisplay-Regular.OTF
+        - asset: assets/fonts/SFProDisplay-Medium.OTF
+          weight: 500
+        - asset: assets/fonts/SFProDisplay-Bold.OTF
+          weight: 700
