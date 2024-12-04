@@ -1,5 +1,6 @@
 export 'activity_card.dart';
 export 'activity_filter_text_field.dart';
+export 'activity_intensity_label.dart';
 export 'activity_timeline.dart';
 export 'category_filter_chip.dart';
 export 'horizontal_filter.dart';

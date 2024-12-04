@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:town_square/core/gen/assets.gen.dart';
+import 'package:town_square/features/activities/activities.dart';
 
 class ActivityCard extends StatelessWidget {
   const ActivityCard({
@@ -169,35 +170,6 @@ class ActivityCard extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class IntensityLabel extends StatelessWidget {
-  const IntensityLabel({
-    required ActivityIntensity intensity,
-    super.key,
-  }) : _intensity = intensity;
-
-  final ActivityIntensity _intensity;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 2,
-        horizontal: 8,
-      ),
-      decoration: BoxDecoration(
-        color: _intensity.color.backgroundColor,
-        borderRadius: BorderRadius.circular(2),
-      ),
-      child: Text(
-        _intensity.name,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: _intensity.color.textColor,
-            ),
       ),
     );
   }
