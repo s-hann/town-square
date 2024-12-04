@@ -1,3 +1,4 @@
+import 'package:activity_repository/src/enum/activity_intensity_enum.dart';
 import 'package:equatable/equatable.dart';
 
 class ActivityListEntity extends Equatable {
@@ -14,7 +15,7 @@ class ActivityListEntity extends Equatable {
 
   final String name;
   final String location;
-  final String? intensity;
+  final ActivityIntensity? intensity;
   final String category;
   final int availableSpot;
   final double price;
@@ -24,7 +25,7 @@ class ActivityListEntity extends Equatable {
   ActivityListEntity copyWith({
     String? name,
     String? location,
-    String? intensity,
+    ActivityIntensity? intensity,
     String? category,
     int? availableSpot,
     double? price,

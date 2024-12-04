@@ -113,22 +113,8 @@ class ActivityCard extends StatelessWidget {
                       ),
                     ),
                     if (_activity.intensity != null)
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 2,
-                          horizontal: 8,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD5F1FF),
-                          borderRadius: BorderRadius.circular(2),
-                        ),
-                        child: Text(
-                          '${_activity.intensity}',
-                          style:
-                              Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: const Color(0xFF65B5DB),
-                                  ),
-                        ),
+                      IntensityLabel(
+                        intensity: _activity.intensity!,
                       ),
                     Container(
                       padding: const EdgeInsets.symmetric(
@@ -183,6 +169,35 @@ class ActivityCard extends StatelessWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class IntensityLabel extends StatelessWidget {
+  const IntensityLabel({
+    required ActivityIntensity intensity,
+    super.key,
+  }) : _intensity = intensity;
+
+  final ActivityIntensity _intensity;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        vertical: 2,
+        horizontal: 8,
+      ),
+      decoration: BoxDecoration(
+        color: _intensity.color.backgroundColor,
+        borderRadius: BorderRadius.circular(2),
+      ),
+      child: Text(
+        _intensity.name,
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: _intensity.color.textColor,
+            ),
       ),
     );
   }
