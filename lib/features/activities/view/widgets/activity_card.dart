@@ -43,7 +43,7 @@ class ActivityCard extends StatelessWidget {
                     text: DateFormat('HH:mm ').format(_activity.time),
                     children: [
                       TextSpan(
-                        text: '(${_activity.durationInMinute}) min)',
+                        text: '(${_activity.durationInMinute} min)',
                         style: const TextStyle(
                           color: Color(0xFFADB5BD),
                         ),

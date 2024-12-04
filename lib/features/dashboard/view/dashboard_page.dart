@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:town_square/core/common/functions.dart';
+
 import 'package:town_square/core/gen/assets.gen.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -16,200 +18,87 @@ class DashboardPage extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          // TODO(s-hann): complete left part
           Visibility(
             visible: screenWidth > 768,
-            child: Container(
-              width: 272,
-              height: MediaQuery.of(context).size.height,
+            child: Material(
               color: Colors.black,
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      left: 76,
-                      top: 54,
-                      right: 40,
-                      bottom: 56,
-                    ),
-                    child: SvgPicture.asset(Assets.logo.twnsqr),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32, right: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        width: double.maxFinite,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.icCalendar,
-                              width: 22,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            const SizedBox(width: 32),
-                            const Text(
-                              'Activities',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
+              child: Container(
+                padding: const EdgeInsets.only(
+                  left: 42,
+                  right: 32,
+                ),
+                width: 272,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 34,
+                        top: 54,
+                        bottom: 56,
                       ),
+                      child: SvgPicture.asset(Assets.logo.twnsqr),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32, right: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        width: double.maxFinite,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.icMap,
-                              width: 22,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            const SizedBox(width: 32),
-                            const Text(
-                              'Locations',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    _LeftPanelButton(
+                      title: 'Activities',
+                      svgAsset: Assets.icons.icCalendar,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32, right: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        width: double.maxFinite,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.icStar,
-                              width: 22,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            const SizedBox(width: 32),
-                            const Text(
-                              'Services',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    _LeftPanelButton(
+                      title: 'Locations',
+                      svgAsset: Assets.icons.icMap,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32, right: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        width: double.maxFinite,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.icUsers,
-                              width: 22,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            const SizedBox(width: 32),
-                            const Text(
-                              'Communities',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    _LeftPanelButton(
+                      title: 'Services',
+                      svgAsset: Assets.icons.icStar,
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 32, right: 20),
-                    child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 8,
-                          horizontal: 16,
-                        ),
-                        width: double.maxFinite,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SvgPicture.asset(
-                              Assets.icons.icBell,
-                              width: 22,
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                            ),
-                            const SizedBox(width: 32),
-                            const Text(
-                              'Notifications',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    _LeftPanelButton(
+                      title: 'Communities',
+                      svgAsset: Assets.icons.icUsers,
                     ),
-                  ),
-                ],
+                    _LeftPanelButton(
+                      title: 'Notifications',
+                      svgAsset: Assets.icons.icBell,
+                    ),
+                    const SizedBox(height: 16),
+                    const _CreateButton(),
+                    const SizedBox(height: 32),
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          foregroundImage: AssetImage(
+                            Assets.images.profile1.path,
+                          ),
+                          radius: 15,
+                        ),
+                        const SizedBox(width: 20),
+                        const Expanded(
+                          child: Text(
+                            'Profile',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              height: 24 / 20,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20),
+                        IconButton(
+                          onPressed: () {
+                            AppFunction.showComingSoonToast();
+                          },
+                          splashColor: Colors.grey.shade700,
+                          hoverColor: Colors.grey.shade900,
+                          icon: const Icon(
+                            Icons.more_vert,
+                            color: Colors.white,
+                            size: 22,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -292,6 +181,97 @@ class DashboardPage extends StatelessWidget {
                 ],
               ),
             ),
+    );
+  }
+}
+
+class _CreateButton extends StatelessWidget {
+  const _CreateButton();
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        AppFunction.showComingSoonToast();
+      },
+      splashColor: Colors.grey.shade700,
+      hoverColor: Colors.grey.shade900,
+      borderRadius: BorderRadius.circular(25),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 16,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: const Color(0xFF35BAF8),
+        ),
+        child: Row(
+          children: [
+            SvgPicture.asset(Assets.icons.icPlus),
+            const SizedBox(width: 30),
+            const Text(
+              'Create',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                height: 24 / 20,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _LeftPanelButton extends StatelessWidget {
+  const _LeftPanelButton({
+    required String title,
+    required String svgAsset,
+  })  : _svgAsset = svgAsset,
+        _title = title;
+
+  final String _title;
+  final String _svgAsset;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        AppFunction.showComingSoonToast();
+      },
+      hoverColor: Colors.grey.shade900,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 8,
+        ),
+        width: double.infinity,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SvgPicture.asset(
+              _svgAsset,
+              width: 22,
+              colorFilter: const ColorFilter.mode(
+                Colors.white,
+                BlendMode.srcIn,
+              ),
+            ),
+            const SizedBox(width: 32),
+            Text(
+              _title,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:town_square/core/common/functions.dart';
 
 class UserGoalBanner extends StatelessWidget {
   const UserGoalBanner({
@@ -53,7 +54,9 @@ class UserGoalBanner extends StatelessWidget {
                   children: ['Join now', 'My points'].map<Widget>(
                     (text) {
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          AppFunction.showComingSoonToast();
+                        },
                         borderRadius: BorderRadius.circular(4),
                         child: Container(
                           padding: const EdgeInsets.symmetric(
