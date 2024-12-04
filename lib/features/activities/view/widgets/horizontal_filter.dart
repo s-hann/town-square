@@ -10,6 +10,7 @@ class HorizontalFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
       height: 26.5,
       child: SingleChildScrollView(
@@ -17,7 +18,10 @@ class HorizontalFilter extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 24, right: 8),
+              padding: EdgeInsets.only(
+                left: screenWidth > 1000 ? 0 : 24,
+                right: 8,
+              ),
               child: CategoryFilterChip(
                 onTap: () {
                   AppFunction.showComingSoonToast();

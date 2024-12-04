@@ -9,6 +9,7 @@ environment:
 dependencies:
   activity_repository:
     path: packages/activity_repository
+  card_loading: ^0.3.2
   equatable: ^2.0.7
   flutter:
     sdk: flutter

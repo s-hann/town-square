@@ -2,8 +2,8 @@ import 'package:activity_repository/activity_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:toastification/toastification.dart';
-import 'package:town_square/core/gen/fonts.gen.dart';
 import 'package:town_square/core/route/app_router.dart';
+import 'package:town_square/core/theme/typography.dart';
 import 'package:town_square/features/app/bloc/app_bloc.dart';
 
 class App extends StatelessWidget {
@@ -26,15 +26,16 @@ class _AppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return MaterialApp.router(
       routerConfig: AppRouter.router,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF35BAF8),
         ),
-        textTheme: Theme.of(context).textTheme.apply(
-              fontFamily: FontFamily.sFProDisplay,
-            ),
+        textTheme: screenWidth > 1000
+            ? AppTypography.appTypographyDesktop(context)
+            : AppTypography.appTypographyMobile(context),
         scaffoldBackgroundColor: const Color(0xFFF8F9FA),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
@@ -44,13 +45,12 @@ class _AppView extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6),
             ),
-            textStyle: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              height: 16.7 / 14,
-            ),
+            textStyle: Theme.of(context).textTheme.labelLarge,
           ),
         ),
+      ),
+      scrollBehavior: const MaterialScrollBehavior().copyWith(
+        scrollbars: false,
       ),
       builder: (_, child) {
         return ToastificationWrapper(child: child!);

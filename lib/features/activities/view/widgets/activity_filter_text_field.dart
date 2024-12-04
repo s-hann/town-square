@@ -24,11 +24,7 @@ class ActivityFilterTextField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           hintText: 'What do you feel like doing?',
-          hintStyle: const TextStyle(
-            color: Color(0xFFADB5BD),
-            fontSize: 14,
-            height: 16.7 / 14,
-          ),
+          hintStyle: Theme.of(context).textTheme.labelLarge,
           border: const OutlineInputBorder(
             borderSide: BorderSide.none,
           ),

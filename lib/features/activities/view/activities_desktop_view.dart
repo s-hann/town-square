@@ -67,17 +67,13 @@ class _ActivityTitle extends StatelessWidget {
       children: [
         Text(
           DateFormat('EEE, MMM dd').format(DateTime.now()),
-          style: const TextStyle(
-            color: Color(0xFFADB5BD),
-            fontSize: 14,
-          ),
+          style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                color: const Color(0xFFADB5BD),
+              ),
         ),
-        const Text(
+        Text(
           'This week in Estepona',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.w500,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ],
     );

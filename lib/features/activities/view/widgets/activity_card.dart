@@ -49,21 +49,15 @@ class ActivityCard extends StatelessWidget {
                         ),
                       ),
                     ],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   _activity.name,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 4),
                 Row(
@@ -76,11 +70,10 @@ class ActivityCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         _activity.location,
-                        style: const TextStyle(
-                          color: Color(0xFFADB5BD),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  color: const Color(0xFFADB5BD),
+                                ),
                       ),
                     ),
                   ],
@@ -109,12 +102,12 @@ class ActivityCard extends StatelessWidget {
                           const SizedBox(width: 4),
                           Text(
                             '${_activity.availableSpot} spots left',
-                            style: const TextStyle(
-                              color: Color(0xFFADB5BD),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              height: 12 / 10,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(
+                                  color: const Color(0xFFADB5BD),
+                                ),
                           ),
                         ],
                       ),
@@ -131,12 +124,10 @@ class ActivityCard extends StatelessWidget {
                         ),
                         child: Text(
                           '${_activity.intensity}',
-                          style: const TextStyle(
-                            color: Color(0xFF65B5DB),
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                            height: 12 / 10,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: const Color(0xFF65B5DB),
+                                  ),
                         ),
                       ),
                     Container(
@@ -150,12 +141,9 @@ class ActivityCard extends StatelessWidget {
                       ),
                       child: Text(
                         _activity.category,
-                        style: const TextStyle(
-                          color: Color(0xFF8AB58A),
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          height: 12 / 10,
-                        ),
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: const Color(0xFF8AB58A),
+                            ),
                       ),
                     ),
                   ],
@@ -170,15 +158,18 @@ class ActivityCard extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 16),
                 child: Text(
                   '${_activity.price.toInt()}€',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w700,
-                    height: 16.7 / 14,
-                  ),
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        height: 16.7 / 14,
+                      ),
                 ),
               ),
               const SizedBox(height: 16),
-              if (_activity.availableSpot < 1) ...[
+              if (_activity.time.isBefore(DateTime.now())) ...[
+                const ElevatedButton(
+                  onPressed: null,
+                  child: Text('Expired'),
+                ),
+              ] else if (_activity.availableSpot < 1) ...[
                 const ElevatedButton(
                   onPressed: null,
                   child: Text('Sold out'),

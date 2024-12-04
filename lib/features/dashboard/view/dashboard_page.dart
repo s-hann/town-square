@@ -107,80 +107,75 @@ class DashboardPage extends StatelessWidget {
       ),
       bottomNavigationBar: screenWidth > 768
           ? null
-          : Container(
-              padding: const EdgeInsets.symmetric(vertical: 4),
+          : Material(
               color: Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      child: SvgPicture.asset(
-                        Assets.icons.icCalendar,
-                        width: 24,
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _BnbButton(
+                      svgAsset: Assets.icons.icCalendar,
+                    ),
+                    _BnbButton(
+                      svgAsset: Assets.icons.icMap,
+                    ),
+                    _BnbButton(
+                      widget: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFFC1EBFF),
+                        ),
+                        child: SvgPicture.asset(
+                          Assets.icons.icPlus,
+                          width: 24,
+                        ),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      child: SvgPicture.asset(
-                        Assets.icons.icMap,
-                        width: 24,
-                      ),
+                    _BnbButton(
+                      svgAsset: Assets.icons.icUsers,
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      child: SvgPicture.asset(
-                        Assets.icons.icPlus,
-                        width: 24,
-                      ),
+                    _BnbButton(
+                      svgAsset: Assets.icons.icStar,
                     ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      child: SvgPicture.asset(
-                        Assets.icons.icUsers,
-                        width: 24,
-                      ),
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 16,
-                      ),
-                      child: SvgPicture.asset(
-                        Assets.icons.icStar,
-                        width: 24,
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
+    );
+  }
+}
+
+class _BnbButton extends StatelessWidget {
+  const _BnbButton({
+    String? svgAsset,
+    Widget? widget,
+  })  : _widget = widget,
+        _svgAsset = svgAsset;
+
+  final String? _svgAsset;
+  final Widget? _widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        AppFunction.showComingSoonToast();
+      },
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8,
+          horizontal: 16,
+        ),
+        child: _svgAsset != null
+            ? SvgPicture.asset(
+                _svgAsset,
+                width: 24,
+              )
+            : _widget,
+      ),
     );
   }
 }

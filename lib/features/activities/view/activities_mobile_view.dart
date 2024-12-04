@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
+import 'package:town_square/core/common/functions.dart';
 import 'package:town_square/core/gen/assets.gen.dart';
 import 'package:town_square/features/activities/activities.dart';
 
@@ -10,11 +13,10 @@ class ActivitiesMobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const isWeb = kIsWeb;
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          expandedHeight: isWeb ? 292 : 240,
+          expandedHeight: _expandedHeight(),
           flexibleSpace: const FlexibleSpaceBar(
             background: Column(
               mainAxisSize: MainAxisSize.min,
@@ -49,26 +51,31 @@ class ActivitiesMobileView extends StatelessWidget {
             ),
           ),
         ),
-        const SliverFillRemaining(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(height: 16),
-                HorizontalFilter(),
-                Flexible(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 24, top: 24),
-                    child: ActivityTimeline(),
-                  ),
+        const SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: 16),
+              HorizontalFilter(),
+              SizedBox(height: 4),
+              Flexible(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 24, top: 20),
+                  child: ActivityTimeline(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],
     );
+  }
+
+  double _expandedHeight() {
+    if (kIsWeb) return 292;
+    if (Platform.isIOS) return 240;
+    return 280;
   }
 }
 
@@ -77,6 +84,7 @@ class _ActivityTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -87,40 +95,47 @@ class _ActivityTitle extends StatelessWidget {
           children: [
             Text(
               DateFormat('EEE, MMM dd').format(DateTime.now()),
-              style: const TextStyle(
-                color: Color(0xFFADB5BD),
-                fontSize: 12,
-              ),
+              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: const Color(0xFFADB5BD),
+                  ),
             ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                InkWell(
-                  onTap: () {},
-                  borderRadius: BorderRadius.circular(40),
-                  child: Padding(
-                    padding: const EdgeInsets.all(2),
-                    child: SvgPicture.asset(
-                      Assets.icons.icBell,
-                      width: 24,
+            Visibility(
+              visible: screenWidth <= 768,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      AppFunction.showComingSoonToast();
+                    },
+                    borderRadius: BorderRadius.circular(40),
+                    child: Padding(
+                      padding: const EdgeInsets.all(2),
+                      child: SvgPicture.asset(
+                        Assets.icons.icBell,
+                        width: 24,
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 12),
-                const CircleAvatar(
-                  radius: 14,
-                ),
-              ],
+                  const SizedBox(width: 12),
+                  InkWell(
+                    onTap: () {
+                      AppFunction.showComingSoonToast();
+                    },
+                    borderRadius: BorderRadius.circular(40),
+                    child: const CircleAvatar(
+                      radius: 14,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
-        const Text(
+        Text(
           'This week in Estepona',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ],
     );

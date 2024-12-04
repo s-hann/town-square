@@ -55,13 +55,9 @@ class WorkshopBanner extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Learn more',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        height: 16.7 / 14,
-                      ),
+                      style: Theme.of(context).textTheme.labelLarge,
                     ),
                     SvgPicture.asset(
                       Assets.icons.icArrowRightCircle,

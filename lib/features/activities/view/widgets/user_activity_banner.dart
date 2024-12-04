@@ -23,86 +23,108 @@ class UserGoalBanner extends StatelessWidget {
           )
         ],
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'You’re close to your goal!',
-                  style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: screenWidth > 390 ? 16 : 14,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Join more sport activities to collect more points',
-                  style: TextStyle(
-                    fontSize: screenWidth > 390 ? 12 : 10,
-                    height: 14 / 12,
-                  ),
-                  maxLines: 3,
-                ),
-                const SizedBox(height: 10),
-                Wrap(
-                  runSpacing: 10,
-                  spacing: 10,
-                  children: ['Join now', 'My points'].map<Widget>(
-                    (text) {
-                      return InkWell(
-                        onTap: () {
-                          AppFunction.showComingSoonToast();
-                        },
-                        borderRadius: BorderRadius.circular(4),
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 4,
-                            horizontal: 8,
-                          ),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: Text(
-                            text,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              height: 14 / 12,
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ).toList(),
-                ),
-              ],
+          Visibility(
+            visible: screenWidth > 1000,
+            child: const Text(
+              'You’re close to your goal!',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                height: 24 / 20,
+              ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(2),
-            child: CircularPercentIndicator(
-              radius: 32,
-              lineWidth: 6.5,
-              percent: 27 / 45,
-              center: const Text(
-                '27',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
-                  height: 30 / 25,
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Visibility(
+                      visible: screenWidth < 1000,
+                      child: Text(
+                        'You’re close to your goal!',
+                        style: TextStyle(
+                          fontSize: screenWidth > 390 ? 16 : 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Join more sport activities to collect more points',
+                      style: TextStyle(
+                        fontSize: screenWidth > 390 ? 12 : 10,
+                        height: 14 / 12,
+                      ),
+                      maxLines: 3,
+                    ),
+                    const SizedBox(height: 10),
+                    Wrap(
+                      runSpacing: 10,
+                      spacing: 10,
+                      children: ['Join now', 'My points'].map<Widget>(
+                        (text) {
+                          return InkWell(
+                            onTap: () {
+                              AppFunction.showComingSoonToast();
+                            },
+                            borderRadius: BorderRadius.circular(4),
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 8,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.black,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                              child: Text(
+                                text,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                              ),
+                            ),
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ],
                 ),
               ),
-              progressColor: const Color(0xFF35BAF8),
-              backgroundWidth: 5,
-              backgroundColor: Colors.white,
-              circularStrokeCap: CircularStrokeCap.round,
-            ),
+              Padding(
+                padding: const EdgeInsets.all(2),
+                child: CircularPercentIndicator(
+                  radius: 32,
+                  lineWidth: 6.5,
+                  percent: 27 / 45,
+                  center: const Text(
+                    '27',
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      height: 30 / 25,
+                    ),
+                  ),
+                  progressColor: const Color(0xFF35BAF8),
+                  backgroundWidth: 5,
+                  backgroundColor: Colors.white,
+                  circularStrokeCap: CircularStrokeCap.round,
+                ),
+              ),
+            ],
           ),
         ],
       ),
