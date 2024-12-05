@@ -15,11 +15,17 @@ class ActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      padding: const EdgeInsets.symmetric(
-        vertical: 8,
-        horizontal: 16,
-      ),
+      padding: screenWidth > 1000
+          ? const EdgeInsets.symmetric(
+              vertical: 12,
+              horizontal: 32,
+            )
+          : const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 16,
+            ),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),

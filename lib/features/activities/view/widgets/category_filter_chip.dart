@@ -16,6 +16,7 @@ class CategoryFilterChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
     return Material(
       color: _isActive ? const Color(0xFFBAA1C8) : const Color(0xFFEEE1F5),
       borderRadius: BorderRadius.circular(4),
@@ -23,8 +24,8 @@ class CategoryFilterChip extends StatelessWidget {
         onTap: _onTap,
         borderRadius: BorderRadius.circular(4),
         child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 4,
+          padding: EdgeInsets.symmetric(
+            vertical: screenWidth > 1000 ? 8 : 4,
             horizontal: 16,
           ),
           child: _child,

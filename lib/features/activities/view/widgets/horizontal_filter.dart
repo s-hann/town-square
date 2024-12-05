@@ -12,7 +12,7 @@ class HorizontalFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: 26.5,
+      height: screenWidth > 1000 ? 33 : 26.5,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -48,7 +48,10 @@ class HorizontalFilter extends StatelessWidget {
                             .add(FilterCategory(index: index));
                       },
                       isActive: index == state.activeCategoryIndex,
-                      child: Text(category),
+                      child: Text(
+                        category,
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
                     );
                   },
                   separatorBuilder: (_, __) => const SizedBox(width: 8),
