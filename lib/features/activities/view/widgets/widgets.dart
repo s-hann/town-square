@@ -6,4 +6,4 @@ export 'category/category_filter_chip.dart';
 export 'category/horizontal_filter.dart';
 export 'banner/popular_events_banner.dart';
 export 'banner/user_activity_banner.dart';
-export 'workshop_banner.dart';
+export 'banner/workshop_banner.dart';
